@@ -27,13 +27,14 @@ public class ServerNameResolverMixin {
 	private ServerRedirectHandler redirectHandler;
 	
 	@Inject(method = "resolveAddress(Lnet/minecraft/client/multiplayer/resolver/ServerAddress;)Ljava/util/Optional;", at = @At("HEAD"), cancellable = true)
-	public void resolveAddress(ServerAddress address, CallbackInfoReturnable<Optional<ResolvedServerAddress>> cir) {
-		Optional<ResolvedServerAddress> optionalAddress = resolver.resolve(address);
-		Optional<ServerAddress> optionalRedirect = redirectHandler.lookupRedirect(address);
+	private void resolve(ServerAddress address, CallbackInfoReturnable<Optional<ResolvedServerAddress>> cir) {
+		Optional<ResolvedServerAddress> optionalAddress = this.resolver.resolve(address);
+		Optional<ServerAddress> optionalRedirect = this.redirectHandler.lookupRedirect(address);
 		
 		if(optionalRedirect.isPresent())
-			optionalAddress = resolver.resolve(optionalRedirect.get());
+			optionalAddress = this.resolver.resolve(optionalRedirect.get());
 		
 		cir.setReturnValue(optionalAddress);
+		return;
 	}
 }

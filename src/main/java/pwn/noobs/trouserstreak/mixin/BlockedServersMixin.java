@@ -12,5 +12,6 @@ public class BlockedServersMixin {
 	@Inject(method = "isBlockedServerHostName", at = @At("HEAD"), cancellable = true)
 	private void isBlockedServerHostName(String server, CallbackInfoReturnable<Boolean> cir) {
 		cir.setReturnValue(false);
+		return;
 	}
 }
