@@ -19,6 +19,9 @@
     "StringEncodingMixin",
     "AbstractBlockMixin",
     "AbstractBoatEntityMixin",
-    "LoadingTerrainScreenMixin"
+    "LoadingTerrainScreenMixin",
+	"BlockedServersMixin",
+	"AddressCheckMixin",
+	"ServerNameResolverMixin"
   ]
 }
