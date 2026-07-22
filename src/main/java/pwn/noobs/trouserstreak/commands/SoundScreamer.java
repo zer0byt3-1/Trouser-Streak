@@ -17,7 +17,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SoundScreamer extends Command {
 	public SoundScreamer() {
-		super("soundscreamer", "Plays a loud challenge complete sound for specific player, requires permission level 2 or higher");
+		super("soundscreamer", "Plays a loud challenge complete sound, requires permission level 2 or higher");
 	}
 
 	private CopyOnWriteArrayList<PlayerInfo> players;
