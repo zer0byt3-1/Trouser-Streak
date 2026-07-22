@@ -97,7 +97,7 @@ public class AutoScoreboard extends Module {
     public void onActivate() {
         commandQueue.clear();
         tickCounter = 0;
-        String scoreboardName = RandomStringUtils.randomAlphabetic(10).toLowerCase();
+        String scoreboardName = RandomStringUtils.secure().nextAlphabetic(10).toLowerCase();
         String thecommand = "/scoreboard objectives add " + scoreboardName + " dummy {\"text\":\"" + MeteorStarscript.run(MeteorStarscript.compile(title.get())) + "\",\"color\":\"" + titleColor.get() + "\"}";
 
         if (thecommand.length() > 256) {
@@ -112,7 +112,7 @@ public class AutoScoreboard extends Module {
 
         int i = content.get().size();
         for(String string : content.get()) {
-            String randomName = RandomStringUtils.randomAlphabetic(10).toLowerCase();
+            String randomName = RandomStringUtils.secure().nextAlphabetic(10).toLowerCase();
             commandQueue.add("/team add " + randomName);
 
             String thecommand2 = "/team modify " + randomName + " suffix {\"text\":\" " + MeteorStarscript.run(MeteorStarscript.compile(string)) + "\"}";
