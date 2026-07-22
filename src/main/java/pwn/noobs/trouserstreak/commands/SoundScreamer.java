@@ -78,7 +78,7 @@ public class SoundScreamer extends Command {
 						friendNames.add("name=!" + player.getProfile().name());
 				}
 				String friendsString = String.join(",", friendNames);
-				String thecommand = "/execute at @e " + "run playsound minecraft:ui.toast.challenge_complete ui @a[" + friendsString + "]";
+				String thecommand = "/execute at @e " + "run playsound minecraft:ui.toast.challenge_complete ui @a[" + friendsString + "] ~ ~ ~ 25";
 				if (thecommand.length() <= 256) {
 					ChatUtils.sendPlayerMsg(thecommand);
 					StringBuilder playerNames = new StringBuilder("Send sound screamer to players (non-friends): ");
