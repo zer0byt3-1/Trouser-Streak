@@ -25,13 +25,13 @@ public class PacketDelay extends Module {
     private final Setting<Set<PacketType<? extends @NotNull Packet<?>>>> c2sPackets = sgGeneral.add(new PacketListSetting.Builder()
             .name("SEND-packets")
             .description("Client-to-server packets to cancel.")
-            .filter(aClass -> PacketUtils.getClientboundPackets().contains(aClass))
+            .filter(aClass -> PacketUtils.getServerboundPackets().contains(aClass))
             .build()
     );
     private final Setting<Set<PacketType<? extends @NotNull Packet<?>>>> s2cPackets = sgGeneral.add(new PacketListSetting.Builder()
             .name("RECEIVE-packets")
             .description("Server-to-client packets to cancel.")
-            .filter(aClass -> PacketUtils.getServerboundPackets().contains(aClass))
+            .filter(aClass -> PacketUtils.getClientboundPackets().contains(aClass))
             .build()
     );
     public final Setting<Integer> sdelay = sgGeneral.add(new IntSetting.Builder()
