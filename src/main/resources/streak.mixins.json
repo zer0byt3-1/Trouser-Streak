@@ -22,6 +22,7 @@
     "LoadingTerrainScreenMixin",
 	"BlockedServersMixin",
 	"AddressCheckMixin",
-	"ServerNameResolverMixin"
+	"ServerNameResolverMixin",
+	"TitleScreenMixin"
   ]
 }
