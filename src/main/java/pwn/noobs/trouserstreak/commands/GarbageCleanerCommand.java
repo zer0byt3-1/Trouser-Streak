@@ -17,11 +17,9 @@ public class GarbageCleanerCommand extends Command {
     @Override
     public void build(LiteralArgumentBuilder<ClientSuggestionProvider> builder) {
         builder.executes(context -> {
-            {
-                ChatUtils.sendMsg(Component.nullToEmpty("Cleaning RAM."));}
+            {ChatUtils.sendMsg(Component.nullToEmpty("Cleaning RAM."));}
             System.gc();
-            {
-                ChatUtils.sendMsg(Component.nullToEmpty("RAM Cleared."));}
+            {ChatUtils.sendMsg(Component.nullToEmpty("RAM Cleared."));}
             return SINGLE_SUCCESS;
         });
     }
