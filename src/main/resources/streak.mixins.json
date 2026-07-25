@@ -23,6 +23,7 @@
 	"BlockedServersMixin",
 	"AddressCheckMixin",
 	"ServerNameResolverMixin",
-	"TitleScreenMixin"
+	"TitleScreenMixin",
+	"ClientPacketListenerMixin"
   ]
 }
