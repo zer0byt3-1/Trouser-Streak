@@ -1,11 +1,13 @@
 package pwn.noobs.trouserstreak.mixin;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import net.minecraft.client.multiplayer.resolver.AddressCheck;
 import net.minecraft.client.multiplayer.resolver.ServerAddress;
 import net.minecraft.client.multiplayer.resolver.ResolvedServerAddress;
+import org.jspecify.annotations.NullMarked;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 
+@NullMarked
 @Mixin(AddressCheck.class)
 public interface AddressCheckMixin {
 	@Overwrite
