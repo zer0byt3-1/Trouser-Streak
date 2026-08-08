@@ -25,7 +25,7 @@ public class ServerNameResolverMixin {
 	@Final
 	private ServerRedirectHandler redirectHandler;
 	
-	@Inject(method = "resolveAddress(Lnet/minecraft/client/multiplayer/resolver/ServerAddress;)Ljava/util/Optional;", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "resolveAddress(Lnet/minecraft/client/multiplayer/resolver/ServerAddress;)Ljava/util/Optional;", at = @At("HEAD"), cancellable = true, remap = false)
 	private void resolve(ServerAddress address, CallbackInfoReturnable<Optional<ResolvedServerAddress>> cir) {
 		Optional<ResolvedServerAddress> optionalAddress = this.resolver.resolve(address);
 		Optional<ServerAddress> optionalRedirect = this.redirectHandler.lookupRedirect(address);

@@ -4,15 +4,20 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.CommonListenerCookie;
+import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.sounds.Weighted;
 import net.minecraft.core.particles.ExplosionParticleInfo;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
+import net.minecraft.network.protocol.common.custom.DiscardedPayload;
 import net.minecraft.network.protocol.game.ClientboundExplodePacket;
 import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
+import net.minecraft.network.protocol.game.ClientboundLoginPacket;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.phys.Vec3;
 import meteordevelopment.meteorclient.utils.player.ChatUtils;
@@ -34,7 +39,7 @@ public abstract class ClientPacketListenerMixin extends ClientCommonPacketListen
 	@Inject(method = "handleParticleEvent", at = @At("HEAD"), cancellable = true)
 	private void handleParticleEvent(ClientboundLevelParticlesPacket packet, CallbackInfo ci) {
 		int count = packet.getCount();
-		if (count > 100000) {
+		if (count > 10000) {
 			ChatUtils.sendMsg(Component.nullToEmpty(
 					String.format("§c§lWARNING: Attempt to use ThouserStreak's Crash. Cancel this packet.")));
 			ci.cancel();
@@ -90,6 +95,24 @@ public abstract class ClientPacketListenerMixin extends ClientCommonPacketListen
 				ci.cancel();
 				return;
 			}
+		} catch (Exception e) {
+			return;
+		}
+	}
+	
+	@Inject(method = "handleLogin", at = @At("RETURN"), cancellable = true, remap = false)
+	private void afterLogin(ClientboundLoginPacket packet, CallbackInfo ci) {
+		Identifier ID = Identifier.fromNamespaceAndPath("vanilla", "join");
+		Minecraft client = Minecraft.getInstance();
+		ServerData server = client.getCurrentServer();
+		
+		if (server == null) {
+			return;
+		}
+		
+		try {
+			ClientPacketListener listener = (ClientPacketListener)(Object)this;
+			listener.getConnection().send(new ServerboundCustomPayloadPacket(new DiscardedPayload(ID)));
 		} catch (Exception e) {
 			return;
 		}

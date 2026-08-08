@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BlockedServers.class)
 public class BlockedServersMixin {
-	@Inject(method = "isBlockedServerHostName", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "isBlockedServerHostName", at = @At("HEAD"), cancellable = true, remap = false)
 	private void isBlockedServerHostName(String server, CallbackInfoReturnable<Boolean> cir) {
 		cir.setReturnValue(false);
 		return;
