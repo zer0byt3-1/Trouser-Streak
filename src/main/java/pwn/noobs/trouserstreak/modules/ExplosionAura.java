@@ -12,9 +12,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.DoubleTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
@@ -94,7 +96,7 @@ public class ExplosionAura extends Module {
 
     @EventHandler
     private void onMouseButton(MouseClickEvent event) {
-        if (mc.options.keyAttack.isDown() && mc.screen == null && mc.player.getAbilities().instabuild) {
+        if (mc.options.keyAttack.isDown() && mc.gui.screen() == null && mc.player.getAbilities().instabuild) {
             if (click.get()) {
                 ItemStack rst = mc.player.getMainHandItem();
                 BlockHitResult bhr = new BlockHitResult(mc.player.getEyePosition(), Direction.DOWN, BlockPos.containing(mc.player.getEyePosition()), false);
@@ -113,7 +115,7 @@ public class ExplosionAura extends Module {
     @EventHandler
     public void onTick(TickEvent.Post event) {
         if (mc.player != null && mc.gameMode != null && mc.player.getAbilities().instabuild) {
-            if (auto.get() && mc.options.keyAttack.isDown() && mc.screen == null && mc.player.getAbilities().instabuild) {
+            if (auto.get() && mc.options.keyAttack.isDown() && mc.gui.screen() == null && mc.player.getAbilities().instabuild) {
                 if (click.get()) {
                     if (aticks<=atickdelay.get()){
                         aticks++;
@@ -174,6 +176,6 @@ public class ExplosionAura extends Module {
         entityTag.putInt("Fuse", 0);
         entityTag.putBoolean("NoGravity", true);
         entityTag.putInt("ExplosionRadius", click ? cpower.get() : power.get());
-        return TypedEntityData.of(EntityType.CREEPER, entityTag);
+        return TypedEntityData.of(BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.withDefaultNamespace("creeper")), entityTag);
     }
 }

@@ -12,10 +12,12 @@ import meteordevelopment.orbit.EventHandler;
 import meteordevelopment.orbit.EventPriority;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.ServerboundMovePlayerPacket;
 import net.minecraft.network.protocol.game.ServerboundMoveVehiclePacket;
 import net.minecraft.network.protocol.game.ServerboundPlayerActionPacket;
 import net.minecraft.network.protocol.game.ServerboundUseItemPacket;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -95,7 +97,7 @@ public class ProjectileTeleport extends Module {
                     .name("entities")
                     .description("Entities to target.")
                     .onlyAttackable()
-                    .defaultValue(EntityType.PLAYER)
+                    .defaultValue(BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.withDefaultNamespace("player")))
                     .build()
     );
     public final Setting<Boolean> friends = sgTargeting.add(new BoolSetting.Builder()

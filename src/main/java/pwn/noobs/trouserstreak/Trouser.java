@@ -41,6 +41,7 @@ public class Trouser extends MeteorAddon {
                 Modules.get().add(new AutoTitles());
                 Modules.get().add(new AutoWither());
                 Modules.get().add(new BaseFinder());
+                Modules.get().add(new BeeCoordExploit());
                 Modules.get().add(new BetterAutoSign());
                 Modules.get().add(new BetterScaffold());
                 Modules.get().add(new BlockListMineCommand());
@@ -52,6 +53,7 @@ public class Trouser extends MeteorAddon {
                 Modules.get().add(new CaveDisturbanceDetector());
                 Modules.get().add(new CollectibleESP());
                 Modules.get().add(new CrossbowMachineGun());
+                Modules.get().add(new CubePrimer());
                 Modules.get().add(new ExplosionAura());
                 Modules.get().add(new FreeBoatRide());
                 Modules.get().add(new FlightAntikick());
@@ -77,7 +79,9 @@ public class Trouser extends MeteorAddon {
                 Modules.get().add(new MultiverseAnnihilator());
                 Modules.get().add(new NbtEditor());
                 Modules.get().add(new NewerNewChunks());
+                Modules.get().add(new NoModDetection());
                 Modules.get().add(new NoSpawnerDetector());
+                Modules.get().add(new NoTelemetry());
                 Modules.get().add(new OnlinePlayerActivityDetector());
                 Modules.get().add(new OPplayerTPmodule());
                 Modules.get().add(new OPServerKillModule());

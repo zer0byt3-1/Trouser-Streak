@@ -114,7 +114,7 @@ public class AutoDisplays extends Module {
     private final Setting<Block> block = sgBlock.add(new BlockSetting.Builder()
             .name("Block")
             .description("The block to be displayed.")
-            .defaultValue(Blocks.BLACK_CONCRETE)
+            .defaultValue(Blocks.CONCRETE.black())
             .visible(() -> displayMode.get() == Modes.BLOCK)
             .build());
     private final Setting<Integer> blockbrightness = sgBlock.add(new IntSetting.Builder()
@@ -419,7 +419,7 @@ public class AutoDisplays extends Module {
 
         Identifier entityId = Identifier.tryParse("minecraft:text_display");
         EntityType<?> entityType = BuiltInRegistries.ENTITY_TYPE.getValue(entityId);
-        if (entityType == null) entityType = EntityType.TEXT_DISPLAY;
+        if (entityType == null) entityType = BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.withDefaultNamespace("text_display"));
 
         TypedEntityData<EntityType<?>> data = TypedEntityData.of(entityType, entityTag);
 

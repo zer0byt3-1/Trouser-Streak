@@ -8,8 +8,10 @@ import meteordevelopment.meteorclient.systems.modules.Module;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.inventory.ContainerInput;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -452,7 +454,7 @@ public class ForceOPSign extends Module {
             else blockEntityTag.putString("id", "minecraft:oak_sign");
         }
 
-        return TypedEntityData.of(BlockEntityType.SIGN, blockEntityTag);
+        return TypedEntityData.of(BuiltInRegistries.BLOCK_ENTITY_TYPE.getValue(Identifier.withDefaultNamespace("sign")), blockEntityTag);
     }
     private boolean isVersionLessThan(String serverVersion, int major, int minor, int patch) {
         if (serverVersion == null) return false;

@@ -17,9 +17,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.DoubleTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -504,7 +506,7 @@ public class HandOfGod extends Module {
         if (notOP.get() && PermissionUtils.getPermissionLevel(mc.player) < 2 && mc.level.hasChunk(mc.player.chunkPosition().x(), mc.player.chunkPosition().z())) {
             return;
         }
-        if (mc.options.keyAttack.isDown() && mc.screen == null && mc.gameMode != null) {
+        if (mc.options.keyAttack.isDown() && mc.gui.screen() == null && mc.gameMode != null) {
             HitResult hr = mc.getCameraEntity().pick(900, 0, fluids.get());
             Vec3 god = hr.getLocation();
             BlockPos pos = BlockPos.containing(god);
@@ -573,7 +575,7 @@ public class HandOfGod extends Module {
                 asaveticks=0;
             }
         }
-        if (auto.get() && mc.options.keyAttack.isDown() && mc.screen == null) {
+        if (auto.get() && mc.options.keyAttack.isDown() && mc.gui.screen() == null) {
             if (aticks<=atickdelay.get()){
                 aticks++;
             } else if (aticks>atickdelay.get()){
@@ -944,6 +946,6 @@ public class HandOfGod extends Module {
         Pos.add(DoubleTag.valueOf(pos.getZ()));
         entityTag.put("Pos", Pos);
         entityTag.putString("id", "minecraft:lightning_bolt");
-        return TypedEntityData.of(EntityType.LIGHTNING_BOLT, entityTag);
+        return TypedEntityData.of(BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.withDefaultNamespace("lightning_bolt")), entityTag);
     }
 }

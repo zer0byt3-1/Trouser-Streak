@@ -20,10 +20,13 @@
     "AbstractBlockMixin",
     "AbstractBoatEntityMixin",
     "LoadingTerrainScreenMixin",
-	"BlockedServersMixin",
-	"AddressCheckMixin",
-	"ServerNameResolverMixin",
-	"TitleScreenMixin",
-	"ClientPacketListenerMixin"
+  	"BlockedServersMixin",
+  	"AddressCheckMixin",
+  	"ServerNameResolverMixin",
+  	"TitleScreenMixin",
+  	"ClientPacketListenerMixin",
+    "StorageLooterItemFilterMixin",
+    "TelemetryManagerMixin",
+    "TranslationStorageMixin"
   ]
 }

@@ -12,6 +12,8 @@ import meteordevelopment.orbit.EventHandler;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -116,7 +118,7 @@ public class LavaAura extends Module {
     private final Setting<Set<EntityType<?>>> entities = sgGeneral.add(new EntityTypeListSetting.Builder()
             .name("entities")
             .description("Entities to Lava.")
-            .defaultValue(EntityType.PLAYER, EntityType.VILLAGER)
+            .defaultValue(BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.withDefaultNamespace("player")), BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.withDefaultNamespace("villager")))
             .build()
     );
     public final Setting<Boolean> trollfriends = sgGeneral.add(new BoolSetting.Builder()
@@ -460,7 +462,7 @@ public class LavaAura extends Module {
                     for (int z = (int) -Math.round(range.get()+1); z <= range.get()+1; z++) {
 
                         BlockPos blockPos = playerPos.offset(x, y, z);
-                        double distance = mc.player.position().distanceTo(blockPos.getCenter());
+                        double distance = mc.player.position().distanceTo(Vec3.atCenterOf(blockPos));
                         if (distance <= range.get() && distance > noburnrange.get()) {
                             if (mc.level.getBlockState(blockPos).getBlock() != Blocks.AIR && mc.level.getBlockState(blockPos).getBlock() != Blocks.WATER && mc.level.getBlockState(blockPos).getBlock() != Blocks.LAVA) {
 
@@ -608,7 +610,7 @@ public class LavaAura extends Module {
                 for (int z = (int) -Math.round(range.get()+1); z <= range.get()+1; z++) {
                     BlockPos blockPos = playerPos.offset(x, y, z);
                     BlockState blockState = mc.level.getBlockState(blockPos);
-                    double distance = mc.player.position().distanceTo(blockPos.getCenter());
+                    double distance = mc.player.position().distanceTo(Vec3.atCenterOf(blockPos));
                     if (distance <= range.get()) {
                         if (blockState.getFluidState().is(Fluids.LAVA)) {
                             // Perform a raycast to check for obstructions
@@ -638,7 +640,7 @@ public class LavaAura extends Module {
                 for (int z = (int) -Math.round(range.get()+1); z <= range.get()+1; z++) {
                     BlockPos blockPos = playerPos.offset(x, y, z);
                     BlockState blockState = mc.level.getBlockState(blockPos);
-                    double distance = mc.player.position().distanceTo(blockPos.getCenter());
+                    double distance = mc.player.position().distanceTo(Vec3.atCenterOf(blockPos));
                     if (distance <= range.get()) {
                         if (blockState.getBlock() == Blocks.FIRE) {
                             if (!ignorewalls.get()){
