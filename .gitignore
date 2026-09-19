@@ -4,3 +4,5 @@ build/
 .classpath
 .project
 bin/
+run
+.idea
