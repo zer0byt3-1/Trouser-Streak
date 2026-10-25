@@ -56,7 +56,6 @@ public class Trouser extends MeteorAddon {
                 Modules.get().add(new CaveDisturbanceDetector());
                 Modules.get().add(new CollectibleESP());
                 Modules.get().add(new CrossbowMachineGun());
-                Modules.get().add(new CubeAutomation());
                 Modules.get().add(new CubePrimer());
                 Modules.get().add(new ExplosionAura());
                 Modules.get().add(new FreeBoatRide());
@@ -112,7 +111,6 @@ public class Trouser extends MeteorAddon {
                 Modules.get().add(new UUIDBan());
                 Modules.get().add(new VoiderPlus());
                 Modules.get().add(new WaypointCoordExploit());
-                Modules.get().add(new WorldEventCoords());
                 Commands.add(new AutoVaultClipCommand());
                 Commands.add(new AutoVclipCommand());
                 Commands.add(new CasterTimer());
